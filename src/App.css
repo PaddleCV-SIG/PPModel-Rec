@@ -1,4 +1,21 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+/* global */
+.blank-description {
+  font-size: 16px;
+}
+
+.blank-description_sm {
+  font-size: 12px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.blank-title {
+  color: #2932e1;
+}
 
 /* header */
 .paddle-header {
@@ -10,5 +27,34 @@
 }
 
 /* input area */
+.pp-input-form {
+  margin: 30px 60px;
+}
+
+.input-form_summary {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.input-form_layout {
+  margin-top: 20px;
+  border: 1px solid #f00;
+}
+
+.blank-title.asterisk::after {
+  content: '*';
+  color: #f00;
+}
+
+.form-blank-0 {
+  display: flex;
+}
+
+.blank-0-0 {
+  margin-left: 50px;
+}
+.blank-0-1 {
+  margin-left: 200px;
+}
 
 /* output area */
