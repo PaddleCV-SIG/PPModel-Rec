@@ -1,1 +1,14 @@
 @import '~antd/dist/antd.css';
+
+/* header */
+.paddle-header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  background: #2932e1;
+}
+
+/* input area */
+
+/* output area */
