@@ -65,6 +65,28 @@
   margin-left: 200px;
 }
 
-.blank-1 {}
+.blank-description_sm .link {
+  text-decoration: underline;
+}
+.blank-description_sm .link + * {
+  margin-left: 5px;
+}
+
+.blank-1-0 {
+  margin-left: 50px;
+}
+
+.blank-1-0 .blank-component {
+  margin-top: 5px;
+}
+
+.blank-component.horizon {
+  display: flex;
+}
+
+.blank-description.asterisk::after {
+  content: '*';
+  color: #f00;
+}
 
 /* output area */

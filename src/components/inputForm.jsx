@@ -1,4 +1,4 @@
-import { Select } from "antd"
+import { Button, Select, Upload } from "antd"
 import { useState } from "react"
 import "../App.css"
 
@@ -39,17 +39,19 @@ export default function InputForm() {
                 <span className="blank-description_sm">如质检，安防等</span>
               </div>
 
-              <Select
-                placeholder={`请选择...`}
-                style={{ width: 240 }}
-                onChange={(value) => {
-                  setScene(value)
-                }}
-              >
-                <Option value="a1">{sceneList[0]}</Option>
-                <Option value="a1">{sceneList[1]}</Option>
-                <Option value="a3">{sceneList[2]}</Option>
-              </Select>
+              <div className="blank-component">
+                <Select
+                  placeholder={`请选择...`}
+                  style={{ width: 240 }}
+                  onChange={(value) => {
+                    setScene(value)
+                  }}
+                >
+                  <Option value="a1">{sceneList[0]}</Option>
+                  <Option value="a1">{sceneList[1]}</Option>
+                  <Option value="a3">{sceneList[2]}</Option>
+                </Select>
+              </div>
             </div>
 
             {/* 下拉框 - 任务类别 */}
@@ -75,32 +77,75 @@ export default function InputForm() {
 
         {/* 数据校验 */}
         <div className="form-layout_blank">
-          {/* 1 - 场景选择 */}
+          {/* 2 - 数据校验 */}
           <div className="form-blank-title">
-            <h1 className="blank-title asterisk">
-              <span className="italic">1</span> &nbsp; 场景选择
+            <h1 className="blank-title">
+              <span className="italic">2</span> &nbsp; 数据校验
             </h1>
           </div>
 
           <div className="form-blank-content">
             {/* 下拉框 - 场景选择 */}
-            <div className="blank-0-0">
+            <div className="blank-1-0">
               <div className="blank-description">
-                请选择您的场景，
-                <span className="blank-description_sm">如质检，安防等</span>
+                请选择您的标注文件。
+                <span className="blank-description_sm">
+                  <a href="https://baidu.com" className="link">
+                    数据集格式说明
+                  </a>
+                  <a href="https://baidu.com" className="link">
+                    标注软件推荐
+                  </a>
+                </span>
               </div>
 
-              <Select
-                placeholder={`请选择...`}
-                style={{ width: 240 }}
-                onChange={(value) => {
-                  setScene(value)
-                }}
-              >
-                <Option value="a1">{sceneList[0]}</Option>
-                <Option value="a1">{sceneList[1]}</Option>
-                <Option value="a3">{sceneList[2]}</Option>
-              </Select>
+              <div className="blank-component horizon">
+                <Upload>
+                  <Button className="button-0" style={{ width: 240 }}>
+                    点击上传
+                  </Button>
+                </Upload>
+
+                <Button
+                  className="button-1"
+                  style={{ marginLeft: 10, width: 120 }}
+                >
+                  数据分析
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 模型运行要求 */}
+        <div className="form-layout_blank">
+          {/* 3 - 模型运行要求 */}
+          <div className="form-blank-title">
+            <h1 className="blank-title">
+              <span className="italic">3</span> &nbsp; 模型运行要求
+            </h1>
+          </div>
+
+          <div className="form-blank-content">
+            {/* 下拉框 - 信号数 */}
+            <div className="blank-2-0">
+              <div className="blank-description asterisk">
+                请选择您要输入的信号数
+              </div>
+
+              <div className="blank-component">
+                <Select
+                  placeholder={`请选择...`}
+                  style={{ width: 240 }}
+                  onChange={(value) => {
+                    setScene(value)
+                  }}
+                >
+                  <Option value="a1">{sceneList[0]}</Option>
+                  <Option value="a1">{sceneList[1]}</Option>
+                  <Option value="a3">{sceneList[2]}</Option>
+                </Select>
+              </div>
             </div>
 
             {/* 下拉框 - 任务类别 */}
@@ -122,11 +167,6 @@ export default function InputForm() {
               </Select>
             </div>
           </div>
-        </div>
-
-        {/* 模型运行要求 */}
-        <div className="form-layout_blank">
-          <div className="blank-2"></div>
         </div>
       </div>
     </div>
