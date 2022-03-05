@@ -17,6 +17,10 @@
   color: #2932e1;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
 /* header */
 .paddle-header {
   display: flex;
@@ -38,15 +42,18 @@
 
 .input-form_layout {
   margin-top: 20px;
+
+  /* 待删除 */
+  height: 150vh;
   border: 1px solid #f00;
 }
 
 .form-layout_blank + * {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .blank-title.asterisk::after {
-  content: '*';
+  content: "*";
   color: #f00;
 }
 
@@ -76,7 +83,7 @@
   margin-left: 50px;
 }
 
-.blank-1-0 .blank-component {
+.blank-component {
   margin-top: 5px;
 }
 
@@ -85,8 +92,16 @@
 }
 
 .blank-description.asterisk::after {
-  content: '*';
+  content: "*";
   color: #f00;
+}
+
+.blank-2-0 {
+  margin-left: 50px;
+}
+
+.blank-2 + * {
+  margin-left: 20px;
 }
 
 /* output area */

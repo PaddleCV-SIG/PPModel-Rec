@@ -8,10 +8,37 @@ export default function InputForm() {
   // form data
   const sceneList = ["工业质检", "安防", "其他"]
   const taskList = ["目标检测", "语义分割"]
+  const sinalCountList = Array(9)
+    .fill("e")
+    .map((e, idx) => e + (idx + 1))
+  const runtimeList = [
+    { name: "20ms及其以下", code: "f1" },
+    { name: "20-40ms", code: "f2" },
+    { name: "40-60ms", code: "f3" },
+    { name: "60-80ms", code: "f4" },
+    { name: "100-200ms", code: "f5" },
+    { name: "200-500ms", code: "f6" },
+    { name: "500-1000ms", code: "f7" },
+    { name: "1000-2000ms", code: "f8" },
+    { name: "2000ms-3000ms", code: "f9" },
+  ]
+  const systemList = [
+    { name: "windows10", code: "j1" },
+    { name: "ubuntu", code: "j2" },
+  ]
+  const hardwareList = [
+    { name: "3090", code: "i1" },
+    { name: "2080ti", code: "i2" },
+    { name: "1080ti", code: "i3" },
+  ]
 
   // state
   const [scene, setScene] = useState()
   const [task, setTask] = useState()
+  const [sinalCount, setSinalCount] = useState()
+  const [runtime, setRuntime] = useState()
+  const [system, setSystem] = useState()
+  const [hardware, setHardware] = useState()
 
   // handler
 
@@ -128,7 +155,7 @@ export default function InputForm() {
 
           <div className="form-blank-content">
             {/* 下拉框 - 信号数 */}
-            <div className="blank-2-0">
+            <div className="blank-2 blank-2-0">
               <div className="blank-description asterisk">
                 请选择您要输入的信号数
               </div>
@@ -138,33 +165,93 @@ export default function InputForm() {
                   placeholder={`请选择...`}
                   style={{ width: 240 }}
                   onChange={(value) => {
-                    setScene(value)
+                    setSinalCount(value)
                   }}
                 >
-                  <Option value="a1">{sceneList[0]}</Option>
-                  <Option value="a1">{sceneList[1]}</Option>
-                  <Option value="a3">{sceneList[2]}</Option>
+                  {sinalCountList.map((sinal, idx) => {
+                    return (
+                      <Option value={sinal} key={idx}>
+                        {idx + 1}
+                      </Option>
+                    )
+                  })}
                 </Select>
               </div>
             </div>
 
-            {/* 下拉框 - 任务类别 */}
-            <div className="blank-0-1">
-              <div className="blank-description">
-                请选择您的任务类别，
-                <span className="blank-description_sm">如分类，检测等</span>
+            {/* 下拉框 - 运行时间 */}
+            <div className="blank-2 blank-2-1">
+              <div className="blank-description asterisk">
+                请选择模型预期在硬件的运行时间
               </div>
 
-              <Select
-                placeholder={`请选择...`}
-                style={{ width: 240 }}
-                onChange={(value) => {
-                  setTask(value)
-                }}
-              >
-                <Option value="b1">{taskList[0]}</Option>
-                <Option value="b2">{taskList[1]}</Option>
-              </Select>
+              <div className="blank-component">
+                <Select
+                  placeholder={`请选择...`}
+                  style={{ width: 240 }}
+                  onChange={(value) => {
+                    setRuntime(value)
+                  }}
+                >
+                  {runtimeList.map((runtime, idx) => {
+                    return (
+                      <Option value={runtime.code} key={idx}>
+                        {runtime.name}
+                      </Option>
+                    )
+                  })}
+                </Select>
+              </div>
+            </div>
+
+            {/* 下拉框 - 部署系统 */}
+            <div className="blank-2 blank-2-1">
+              <div className="blank-description asterisk">
+                请选择您部署使用系统
+              </div>
+
+              <div className="blank-component">
+                <Select
+                  placeholder={`请选择...`}
+                  style={{ width: 240 }}
+                  onChange={(value) => {
+                    setSystem(value)
+                  }}
+                >
+                  {systemList.map((system, idx) => {
+                    return (
+                      <Option value={system.code} key={idx}>
+                        {system.name}
+                      </Option>
+                    )
+                  })}
+                </Select>
+              </div>
+            </div>
+
+            {/* 下拉框 - 部署硬件 */}
+            <div className="blank-2 blank-2-1">
+              <div className="blank-description asterisk">
+                请选择您部署的硬件
+              </div>
+
+              <div className="blank-component">
+                <Select
+                  placeholder={`请选择...`}
+                  style={{ width: 240 }}
+                  onChange={(value) => {
+                    setHardware(value)
+                  }}
+                >
+                  {hardwareList.map((hardware, idx) => {
+                    return (
+                      <Option value={hardware.code} key={idx}>
+                        {hardware.name}
+                      </Option>
+                    )
+                  })}
+                </Select>
+              </div>
             </div>
           </div>
         </div>
