@@ -61,7 +61,7 @@ export default function OutputForm() {
       ),
     },
     {
-      title: "Resize尺寸",
+      title: "部署方式说明",
       dataIndex: "resize",
       key: "resize",
     },

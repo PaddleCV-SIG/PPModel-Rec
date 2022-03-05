@@ -1,5 +1,9 @@
 @import "~antd/dist/antd.css";
 
+#root {
+  min-width: 1440px;
+}
+
 /* global */
 .blank-description {
   font-size: 16px;
@@ -133,3 +137,6 @@ h1 {
 }
 
 /* output area */
+.output-form_layout {
+  padding-bottom: 60px;
+}
