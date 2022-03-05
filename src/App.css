@@ -21,6 +21,15 @@ h1 {
   margin-bottom: 0;
 }
 
+.ant-table-thead th {
+  background-color: #2932e1 !important;
+  color: #fff !important;
+}
+
+/* 改写默认伪类 */
+.ant-table-cell-row-hover {
+  background-color: #e9f6fe !important;
+}
 
 /* header */
 .paddle-header {
@@ -36,13 +45,16 @@ h1 {
   margin: 30px 60px;
 }
 
+.pp-input-form > * + * {
+  margin-top: 20px;
+}
+
 .input-form_summary {
   font-weight: 700;
   font-size: 16px;
 }
 
 .input-form_layout {
-  margin-top: 20px;
   padding-bottom: 20px;
   border-bottom: 2px dashed #2932e1;
 
@@ -119,4 +131,5 @@ h1 {
   background-color: #2932e1;
   border: none;
 }
+
 /* output area */

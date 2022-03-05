@@ -7,8 +7,11 @@ import OutputForm from "./components/outputForm"
 const App = () => (
   <div className="App">
     <Header />
-    <InputForm />
-    <OutputForm />
+    
+    <div className="pp-input-form">
+      <InputForm />
+      <OutputForm />
+    </div>
   </div>
 )
 

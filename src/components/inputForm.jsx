@@ -42,15 +42,17 @@ export default function InputForm() {
 
   // handler
   const handleSubmit = (e) => {
-    console.log(e);
+    console.log(e)
   }
 
   return (
-    <div className="pp-input-form">
+    // 
+    <>
       <div className="input-form_summary">
         模型选型工具凝聚了飞桨开发团队在产业实践中总结的规律，用户输入自己的场景和任务，选型工具自动为用户提供合适的模型和相应的硬件。
       </div>
 
+      {/* 用户输入部分 */}
       <div className="input-form_layout">
         {/* 场景选择 */}
         <div className="form-layout_blank">
@@ -261,11 +263,17 @@ export default function InputForm() {
 
         {/* 提交按钮 */}
         <div className="form-layout_blank">
-          <Button className="form-blank_submit" type="primary" size="large" onClick={handleSubmit}>
+          <Button
+            className="form-blank_submit"
+            type="primary"
+            size="large"
+            onClick={handleSubmit}
+          >
             生成模型推荐
           </Button>
         </div>
       </div>
-    </div>
+    </>
+    // </div>
   )
 }
