@@ -41,6 +41,9 @@ export default function InputForm() {
   const [hardware, setHardware] = useState()
 
   // handler
+  const handleSubmit = (e) => {
+    console.log(e);
+  }
 
   return (
     <div className="pp-input-form">
@@ -254,6 +257,13 @@ export default function InputForm() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* 提交按钮 */}
+        <div className="form-layout_blank">
+          <Button className="form-blank_submit" type="primary" size="large" onClick={handleSubmit}>
+            生成模型推荐
+          </Button>
         </div>
       </div>
     </div>

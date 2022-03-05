@@ -21,6 +21,7 @@ h1 {
   margin-bottom: 0;
 }
 
+
 /* header */
 .paddle-header {
   display: flex;
@@ -42,10 +43,11 @@ h1 {
 
 .input-form_layout {
   margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px dashed #2932e1;
 
   /* 待删除 */
-  height: 150vh;
-  border: 1px solid #f00;
+  /* border: 1px solid #f00; */
 }
 
 .form-layout_blank + * {
@@ -104,4 +106,17 @@ h1 {
   margin-left: 20px;
 }
 
+.form-blank_submit {
+  display: block;
+  margin: 0 auto;
+  width: 240px;
+  background-color: #2932e1;
+  border: none;
+}
+.form-blank_submit:hover,
+.form-blank_submit:active,
+.form-blank_submit:focus {
+  background-color: #2932e1;
+  border: none;
+}
 /* output area */
