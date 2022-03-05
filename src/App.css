@@ -41,9 +41,17 @@
   border: 1px solid #f00;
 }
 
+.form-layout_blank + * {
+  margin-top: 20px;
+}
+
 .blank-title.asterisk::after {
   content: '*';
   color: #f00;
+}
+
+.form-blank-content {
+  display: flex;
 }
 
 .form-blank-0 {
@@ -56,5 +64,7 @@
 .blank-0-1 {
   margin-left: 200px;
 }
+
+.blank-1 {}
 
 /* output area */
