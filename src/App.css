@@ -1,0 +1,142 @@
+@import "~antd/dist/antd.css";
+
+#root {
+  min-width: 1440px;
+}
+
+/* global */
+.blank-description {
+  font-size: 16px;
+}
+
+.blank-description_sm {
+  font-size: 12px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.blank-title {
+  color: #2932e1;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+.ant-table-thead th {
+  background-color: #2932e1 !important;
+  color: #fff !important;
+}
+
+/* 改写默认伪类 */
+.ant-table-cell-row-hover {
+  background-color: #e9f6fe !important;
+}
+
+/* header */
+.paddle-header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  background: #2932e1;
+}
+
+/* input area */
+.pp-input-form {
+  margin: 30px 60px;
+}
+
+.pp-input-form > * + * {
+  margin-top: 20px;
+}
+
+.input-form_summary {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.input-form_layout {
+  padding-bottom: 20px;
+  border-bottom: 2px dashed #2932e1;
+
+  /* 待删除 */
+  /* border: 1px solid #f00; */
+}
+
+.form-layout_blank + * {
+  margin-top: 30px;
+}
+
+.blank-title.asterisk::after {
+  content: "*";
+  color: #f00;
+}
+
+.form-blank-content {
+  display: flex;
+}
+
+.form-blank-0 {
+  display: flex;
+}
+
+.blank-0-0 {
+  margin-left: 50px;
+}
+.blank-0-1 {
+  margin-left: 200px;
+}
+
+.blank-description_sm .link {
+  text-decoration: underline;
+}
+.blank-description_sm .link + * {
+  margin-left: 5px;
+}
+
+.blank-1-0 {
+  margin-left: 50px;
+}
+
+.blank-component {
+  margin-top: 5px;
+}
+
+.blank-component.horizon {
+  display: flex;
+}
+
+.blank-description.asterisk::after {
+  content: "*";
+  color: #f00;
+}
+
+.blank-2-0 {
+  margin-left: 50px;
+}
+
+.blank-2 + * {
+  margin-left: 20px;
+}
+
+.form-blank_submit {
+  display: block;
+  margin: 0 auto;
+  width: 240px;
+  background-color: #2932e1;
+  border: none;
+}
+.form-blank_submit:hover,
+.form-blank_submit:active,
+.form-blank_submit:focus {
+  background-color: #2932e1;
+  border: none;
+}
+
+/* output area */
+.output-form_layout {
+  padding-bottom: 60px;
+}
