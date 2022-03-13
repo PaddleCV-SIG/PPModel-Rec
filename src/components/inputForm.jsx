@@ -1,53 +1,71 @@
-import { Button, Select, Upload } from "antd"
-import { useState } from "react"
-import "../App.css"
+import { Form, Button, Select, Upload } from 'antd'
+import '../App.css'
 
 const { Option } = Select
 
 export default function InputForm() {
   // form data
-  const sceneList = ["工业质检", "安防", "其他"]
-  const taskList = ["目标检测", "语义分割"]
+  const sceneList = ['工业质检', '安防', '其他']
+  const taskList = ['目标检测', '语义分割']
   const sinalCountList = Array(9)
-    .fill("e")
+    .fill('e')
     .map((e, idx) => e + (idx + 1))
   const runtimeList = [
-    { name: "20ms及其以下", code: "f1" },
-    { name: "20-40ms", code: "f2" },
-    { name: "40-60ms", code: "f3" },
-    { name: "60-80ms", code: "f4" },
-    { name: "100-200ms", code: "f5" },
-    { name: "200-500ms", code: "f6" },
-    { name: "500-1000ms", code: "f7" },
-    { name: "1000-2000ms", code: "f8" },
-    { name: "2000ms-3000ms", code: "f9" },
+    { name: '20ms及其以下', code: 'f1' },
+    { name: '20-40ms', code: 'f2' },
+    { name: '40-60ms', code: 'f3' },
+    { name: '60-80ms', code: 'f4' },
+    { name: '100-200ms', code: 'f5' },
+    { name: '200-500ms', code: 'f6' },
+    { name: '500-1000ms', code: 'f7' },
+    { name: '1000-2000ms', code: 'f8' },
+    { name: '2000ms-3000ms', code: 'f9' },
   ]
   const systemList = [
-    { name: "windows10", code: "j1" },
-    { name: "ubuntu", code: "j2" },
+    { name: 'windows10', code: 'j1' },
+    { name: 'ubuntu', code: 'j2' },
   ]
   const hardwareList = [
-    { name: "3090", code: "i1" },
-    { name: "2080ti", code: "i2" },
-    { name: "1080ti", code: "i3" },
+    { name: '3090', code: 'i1' },
+    { name: '2080ti', code: 'i2' },
+    { name: '1080ti', code: 'i3' },
   ]
 
-  // state
-  const [scene, setScene] = useState()
-  const [task, setTask] = useState()
-  const [sinalCount, setSinalCount] = useState()
-  const [runtime, setRuntime] = useState()
-  const [system, setSystem] = useState()
-  const [hardware, setHardware] = useState()
+  // form instance
+  const [form] = Form.useForm()
 
   // handler
-  const handleSubmit = (e) => {
-    console.log(e)
+  const formValuesChange = (changedValues, allValues) => {
+    // console.log(changedValues, allValues)
+  }
+
+  const formSubmit = () => {
+    form.submit()
+  }
+
+  const formFinish = (values) => {
+    const url = 'http://127.0.0.1:3001/backend/koa'
+    const fetchInit = {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    }
+
+    fetch(url, fetchInit)
+      .then((res) => res.json())
+      .then((res) => console.log(`res`, res))
+      .catch((err) => console.log(err))
   }
 
   return (
-    //
-    <>
+    <Form
+      form={form}
+      onValuesChange={formValuesChange}
+      onFinish={formFinish}
+      scrollToFirstError
+    >
       <div className="input-form_summary">
         模型选型工具凝聚了飞桨开发团队在产业实践中总结的规律，用户输入自己的场景和任务，选型工具自动为用户提供合适的模型和相应的硬件。
       </div>
@@ -71,19 +89,17 @@ export default function InputForm() {
                 <span className="blank-description_sm">如质检，安防等</span>
               </div>
 
-              <div className="blank-component">
-                <Select
-                  placeholder={`请选择...`}
-                  style={{ width: 240 }}
-                  onChange={(value) => {
-                    setScene(value)
-                  }}
-                >
+              <Form.Item
+                name="scene"
+                className="blank-component"
+                rules={[{ required: true, message: '请选择您的使用场景' }]}
+              >
+                <Select placeholder={`请选择...`} style={{ width: 240 }}>
                   <Option value="a1">{sceneList[0]}</Option>
-                  <Option value="a1">{sceneList[1]}</Option>
+                  <Option value="a2">{sceneList[1]}</Option>
                   <Option value="a3">{sceneList[2]}</Option>
                 </Select>
-              </div>
+              </Form.Item>
             </div>
 
             {/* 下拉框 - 任务类别 */}
@@ -93,18 +109,16 @@ export default function InputForm() {
                 <span className="blank-description_sm">如分类，检测等</span>
               </div>
 
-              <div className="blank-component">
-                <Select
-                  placeholder={`请选择...`}
-                  style={{ width: 240 }}
-                  onChange={(value) => {
-                    setTask(value)
-                  }}
-                >
+              <Form.Item
+                name="task"
+                className="blank-component"
+                rules={[{ required: true, message: '请选择您的任务类别' }]}
+              >
+                <Select placeholder={`请选择...`} style={{ width: 240 }}>
                   <Option value="b1">{taskList[0]}</Option>
                   <Option value="b2">{taskList[1]}</Option>
                 </Select>
-              </div>
+              </Form.Item>
             </div>
           </div>
         </div>
@@ -169,14 +183,12 @@ export default function InputForm() {
                 请选择您要输入的信号数
               </div>
 
-              <div className="blank-component">
-                <Select
-                  placeholder={`请选择...`}
-                  style={{ width: 240 }}
-                  onChange={(value) => {
-                    setSinalCount(value)
-                  }}
-                >
+              <Form.Item
+                name="sinalCount"
+                className="blank-component"
+                rules={[{ required: true, message: '请选择您要输入的信号数' }]}
+              >
+                <Select placeholder={`请选择...`} style={{ width: 240 }}>
                   {sinalCountList.map((sinal, idx) => {
                     return (
                       <Option value={sinal} key={idx}>
@@ -185,7 +197,7 @@ export default function InputForm() {
                     )
                   })}
                 </Select>
-              </div>
+              </Form.Item>
             </div>
 
             {/* 下拉框 - 运行时间 */}
@@ -194,14 +206,12 @@ export default function InputForm() {
                 请选择模型预期在硬件的运行时间
               </div>
 
-              <div className="blank-component">
-                <Select
-                  placeholder={`请选择...`}
-                  style={{ width: 240 }}
-                  onChange={(value) => {
-                    setRuntime(value)
-                  }}
-                >
+              <Form.Item
+                name="runtime"
+                className="blank-component"
+                rules={[{ required: true, message: '请选择您要输入的信号数' }]}
+              >
+                <Select placeholder={`请选择...`} style={{ width: 240 }}>
                   {runtimeList.map((runtime, idx) => {
                     return (
                       <Option value={runtime.code} key={idx}>
@@ -210,7 +220,7 @@ export default function InputForm() {
                     )
                   })}
                 </Select>
-              </div>
+              </Form.Item>
             </div>
 
             {/* 下拉框 - 部署系统 */}
@@ -219,14 +229,12 @@ export default function InputForm() {
                 请选择您部署使用系统
               </div>
 
-              <div className="blank-component">
-                <Select
-                  placeholder={`请选择...`}
-                  style={{ width: 240 }}
-                  onChange={(value) => {
-                    setSystem(value)
-                  }}
-                >
+              <Form.Item
+                name="system"
+                className="blank-component"
+                rules={[{ required: true, message: '请选择您部署使用系统' }]}
+              >
+                <Select placeholder={`请选择...`} style={{ width: 240 }}>
                   {systemList.map((system, idx) => {
                     return (
                       <Option value={system.code} key={idx}>
@@ -235,21 +243,19 @@ export default function InputForm() {
                     )
                   })}
                 </Select>
-              </div>
+              </Form.Item>
             </div>
 
             {/* 下拉框 - 部署硬件 */}
             <div className="blank-2 blank-2-1">
               <div className="blank-description">请选择您部署的硬件</div>
 
-              <div className="blank-component">
-                <Select
-                  placeholder={`请选择...`}
-                  style={{ width: 240 }}
-                  onChange={(value) => {
-                    setHardware(value)
-                  }}
-                >
+              <Form.Item
+                name="hardware"
+                className="blank-component"
+                rules={[{ required: true, message: '请选择您部署的硬件' }]}
+              >
+                <Select placeholder={`请选择...`} style={{ width: 240 }}>
                   {hardwareList.map((hardware, idx) => {
                     return (
                       <Option value={hardware.code} key={idx}>
@@ -258,7 +264,7 @@ export default function InputForm() {
                     )
                   })}
                 </Select>
-              </div>
+              </Form.Item>
             </div>
           </div>
         </div>
@@ -269,13 +275,13 @@ export default function InputForm() {
             className="form-blank_submit"
             type="primary"
             size="large"
-            onClick={handleSubmit}
+            onClick={formSubmit}
           >
             生成模型推荐
           </Button>
         </div>
       </div>
-    </>
+    </Form>
     // </div>
   )
 }
