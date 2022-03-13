@@ -5,11 +5,18 @@ const { Option } = Select
 
 export default function InputForm() {
   // form data
-  const sceneList = ['工业质检', '安防', '其他']
-  const taskList = ['目标检测', '语义分割']
+  const sceneList = [
+    { name: '工业质检', code: 'a1' },
+    { name: '安防', code: 'a2' },
+    { name: '其他', code: 'a3' },
+  ]
+  const taskList = [
+    { name: '目标检测', code: 'b1' },
+    { name: '语义分割', code: 'b2' },
+  ]
   const sinalCountList = Array(9)
     .fill('e')
-    .map((e, idx) => e + (idx + 1))
+    .map((e, idx) => ({ name: idx + 1, code: 'e' + (idx + 1) }))
   const runtimeList = [
     { name: '20ms及其以下', code: 'f1' },
     { name: '20-40ms', code: 'f2' },
@@ -43,7 +50,8 @@ export default function InputForm() {
     form.submit()
   }
 
-  const formFinish = (values) => {
+  const formFinish = async (values) => {
+    console.log(values)
     const url = 'http://127.0.0.1:3001/backend/koa'
     const fetchInit = {
       method: 'POST', // or 'PUT'
@@ -95,9 +103,13 @@ export default function InputForm() {
                 rules={[{ required: true, message: '请选择您的使用场景' }]}
               >
                 <Select placeholder={`请选择...`} style={{ width: 240 }}>
-                  <Option value="a1">{sceneList[0]}</Option>
-                  <Option value="a2">{sceneList[1]}</Option>
-                  <Option value="a3">{sceneList[2]}</Option>
+                  {sceneList.map((item, idx) => {
+                    return (
+                      <Option value={item.code} key={idx}>
+                        {item.name}
+                      </Option>
+                    )
+                  })}
                 </Select>
               </Form.Item>
             </div>
@@ -115,8 +127,13 @@ export default function InputForm() {
                 rules={[{ required: true, message: '请选择您的任务类别' }]}
               >
                 <Select placeholder={`请选择...`} style={{ width: 240 }}>
-                  <Option value="b1">{taskList[0]}</Option>
-                  <Option value="b2">{taskList[1]}</Option>
+                  {taskList.map((item, idx) => {
+                    return (
+                      <Option value={item.code} key={idx}>
+                        {item.name}
+                      </Option>
+                    )
+                  })}
                 </Select>
               </Form.Item>
             </div>
@@ -189,10 +206,10 @@ export default function InputForm() {
                 rules={[{ required: true, message: '请选择您要输入的信号数' }]}
               >
                 <Select placeholder={`请选择...`} style={{ width: 240 }}>
-                  {sinalCountList.map((sinal, idx) => {
+                  {sinalCountList.map((item, idx) => {
                     return (
-                      <Option value={sinal} key={idx}>
-                        {idx + 1}
+                      <Option value={item.code} key={idx}>
+                        {item.name}
                       </Option>
                     )
                   })}
