@@ -3,7 +3,9 @@ import '../App.css'
 
 const { Option } = Select
 
-export default function InputForm() {
+function InputForm(props) {
+  // state
+
   // form data
   const sceneList = [
     { name: '工业质检', code: 'a1' },
@@ -63,7 +65,7 @@ export default function InputForm() {
 
     fetch(url, fetchInit)
       .then((res) => res.json())
-      .then((res) => console.log(`res`, res))
+      .then((res) => props.setRes(res))
       .catch((err) => console.log(err))
   }
 
@@ -302,3 +304,5 @@ export default function InputForm() {
     // </div>
   )
 }
+
+export default InputForm

@@ -1,59 +1,50 @@
-import { Table } from "antd"
-import "../App.css"
+import { Table } from 'antd'
+import { useEffect, useState } from 'react'
+import '../App.css'
 
-export default function OutputForm() {
-  const modelRecDataSource = [
-    {
-      key: "1",
-      dataIndex: "1",
-      modalSelect: "YOLO",
-      optimization: "+数据增强",
-      config: "XXX.yml",
-      resize: "608*608",
-      hardware: "1080Ti*3",
-      demo: "下载地址",
-    },
-    {
-      key: "2",
-      dataIndex: "2",
-      modalSelect: "picodet",
-      optimization: "+fpn",
-      config: "XXX.yml",
-      resize: "608*608",
-      hardware: "2080Ti*3",
-      demo: "下载地址",
-    },
-    {
-      key: "3",
-      dataIndex: "3",
-      modalSelect: "...",
-      optimization: "...",
-      config: "....",
-      resize: "...",
-      hardware: "...",
-      demo: "...",
-    },
-  ]
+export default function OutputForm(props) {
+  useEffect(() => {
+    let rows = []
+    let res = props.res
+    rows = res.map((item) =>
+      [].concat(item[18], item[20], item[22], item[26], item[27], item[24])
+    )
+
+    setModelRecDataSource(
+      rows.map((item, idx) => ({
+        key: idx,
+        dataIndex: idx,
+        modalSelect: item[0],
+        optimization: item[1],
+        config: item[2],
+        resize: item[3],
+        fps: item[4],
+        demo: item[5],
+      }))
+    )
+  }, [props.res])
+
+  const [modelRecDataSource, setModelRecDataSource] = useState([])
   const modelRecColumns = [
     {
-      title: "",
-      dataIndex: "dataIndex",
-      key: "dataIndex",
+      title: '',
+      dataIndex: 'dataIndex',
+      key: 'dataIndex',
     },
     {
-      title: "基础模型选择",
-      dataIndex: "modalSelect",
-      key: "modalSelect",
+      title: '基础模型选择',
+      dataIndex: 'modalSelect',
+      key: 'modalSelect',
     },
     {
-      title: "模型优化点",
-      dataIndex: "optimization",
-      key: "optimization",
+      title: '模型优化点',
+      dataIndex: 'optimization',
+      key: 'optimization',
     },
     {
-      title: "模型配置文件",
-      dataIndex: "config",
-      key: "config",
+      title: '模型配置文件',
+      dataIndex: 'config',
+      key: 'config',
       render: (text) => (
         <a href="https://baidu.com" target="_blank" rel="noreferrer">
           {text}
@@ -61,19 +52,19 @@ export default function OutputForm() {
       ),
     },
     {
-      title: "部署方式说明",
-      dataIndex: "resize",
-      key: "resize",
+      title: '部署方式说明',
+      dataIndex: 'resize',
+      key: 'resize',
     },
     {
-      title: "硬件推荐",
-      dataIndex: "hardware",
-      key: "hardware",
+      title: '最终系统FPS',
+      dataIndex: 'fps',
+      key: 'fps',
     },
     {
-      title: "部署Demo示例",
-      dataIndex: "demo",
-      key: "demo",
+      title: '部署Demo示例',
+      dataIndex: 'demo',
+      key: 'demo',
       render: (text) => (
         <a href="https://baidu.com" target="_blank" rel="noreferrer">
           {text}
@@ -83,39 +74,39 @@ export default function OutputForm() {
   ]
   const dataCharacteristicSoruce = [
     {
-      key: "0",
-      characteristic: "是/否",
-      smallSample: "是",
-      equalDistribution: "否",
-      intensive: "是",
-      smallTarget: "否",
+      key: '0',
+      characteristic: '是/否',
+      smallSample: '是',
+      equalDistribution: '否',
+      intensive: '是',
+      smallTarget: '否',
     },
   ]
   const dataCharacteristicColums = [
     {
-      title: "数据特点",
-      dataIndex: "characteristic",
-      key: "characteristic",
+      title: '数据特点',
+      dataIndex: 'characteristic',
+      key: 'characteristic',
     },
     {
-      title: "小样本",
-      dataIndex: "smallSample",
-      key: "smallSample",
+      title: '小样本',
+      dataIndex: 'smallSample',
+      key: 'smallSample',
     },
     {
-      title: "样本分布不均衡",
-      dataIndex: "equalDistribution",
-      key: "equalDistribution",
+      title: '样本分布不均衡',
+      dataIndex: 'equalDistribution',
+      key: 'equalDistribution',
     },
     {
-      title: "密集型",
-      dataIndex: "intensive",
-      key: "intensive",
+      title: '密集型',
+      dataIndex: 'intensive',
+      key: 'intensive',
     },
     {
-      title: "小目标",
-      dataIndex: "smallTarget",
-      key: "smallTarget",
+      title: '小目标',
+      dataIndex: 'smallTarget',
+      key: 'smallTarget',
     },
   ]
 

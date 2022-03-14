@@ -5,11 +5,11 @@ const xlsx = require('node-xlsx')
 
 const app = new Koa()
 
-let resIndex = -1
+let resIndex = []
 const compare = (arr1, arr2, idx) => {
-  resIndex = idx
+  
   if (arr1.length !== arr2.length) return false
-  return arr1.sort().join(' ') === arr2.sort().join(' ')
+  return arr1.sort().join(' ') === arr2.sort().join(' ') && resIndex.push(idx)
 }
 
 app.use(
@@ -27,8 +27,9 @@ app.use(
 app.use(async (ctx) => {
   // 解析
   const sheetList = xlsx.parse('backend/excel.xlsx')
-  const targetObj = sheetList.find((item) => item.name === '检测结果推荐G&H')
-  const targetData = targetObj.data
+  const targetData = sheetList.find(
+    (item) => item.name === '检测结果推荐G&H'
+  ).data
   const targetRow = targetData
     .map((item, idx) => {
       return [].concat(
@@ -54,10 +55,12 @@ app.use(async (ctx) => {
       compare(row.slice(1), Object.values(req), idx)
     )
 
-    const resRow = targetData[resIndex + 3]
+    const resRows = resIndex.map((idx) => targetData[idx + 3])
+    // const resRow = targetData[resIndex + 3]
 
     // 不存在返回空数组 []
-    ctx.body = resRow
+    ctx.body = resRows
+    resIndex = []
   })
 })
 
